@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O’clock – Minuteur · Chrono · Réveil · Horloge</title>
+  <meta name="description" content="O’clock, un outil hors-ligne : minuteur, chronomètre, réveil et horloge.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0f0f14">
+  <link rel="icon" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <style>html{color-scheme:dark light}</style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>O’clock</h1>
+    <button id="btnInstall" class="ghost" hidden>Installer</button>
+  </header>
+
+  <main>
+    <section class="clock-card">
+      <div>
+        <div class="clock-time" id="clockTime">--:--:--</div>
+        <div class="clock-date" id="clockDate">—</div>
+        <div class="tz">Heure Europe/Paris (UTC+1/UTC+2)</div>
+      </div>
+    </section>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="minuteur">Minuteur</button>
+      <button class="tab" data-tab="chrono">Chronomètre</button>
+      <button class="tab" data-tab="reveil">Réveil</button>
+    </nav>
+
+    <section id="tab-minuteur" class="tabpane show">
+      <div class="row gap">
+        <label class="stack">
+          <span>Durée (mm:ss)</span>
+          <input id="timerInput" type="text" inputmode="numeric" placeholder="05:00" value="05:00">
+        </label>
+        <div class="stack">
+          <span>&nbsp;</span>
+          <div class="incdec">
+            <button id="incMin" aria-label="Ajouter 1 minute">+1m</button>
+            <button id="decMin" aria-label="Retirer 1 minute">-1m</button>
+            <button id="incSec" aria-label="Ajouter 10 secondes">+10s</button>
+            <button id="decSec" aria-label="Retirer 10 secondes">-10s</button>
+          </div>
+        </div>
+      </div>
+      <div class="row gap">
+        <button id="timerToggle" class="primary">Démarrer</button>
+        <button id="timerReset" class="ghost">Réinitialiser</button>
+      </div>
+      <div class="big-display" id="timerDisplay">05:00</div>
+      <div id="timerAlert" class="alert" hidden>⏰ Minuteur terminé.</div>
+    </section>
+
+    <section id="tab-chrono" class="tabpane">
+      <div class="row gap">
+        <button id="chronoToggle" class="primary">Lancer</button>
+        <button id="chronoLap">Tour</button>
+        <button id="chronoReset" class="ghost">Reset</button>
+      </div>
+      <div class="big-display" id="chronoDisplay">00:00.00</div>
+      <ul id="laps" class="list"></ul>
+    </section>
+
+    <section id="tab-reveil" class="tabpane">
+      <form id="alarmForm" class="row gap">
+        <label class="stack">
+          <span>Heure</span>
+          <input id="alarmTime" type="time" required>
+        </label>
+        <label class="stack grow">
+          <span>Message</span>
+          <input id="alarmMsg" type="text" placeholder="Debout !">
+        </label>
+        <button class="primary" type="submit">Ajouter</button>
+      </form>
+      <ul id="alarms" class="list"></ul>
+      <div id="alarmAlert" class="alert" hidden>🔔 <span id="alarmAlertText"></span></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <small>Fonctionne hors-ligne • PWA • Données stockées localement</small>
+  </footer>
+
+  <audio id="beep" preload="auto">
+    <source src="/réveil.mp3" type="audio/mp3">
+  </audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
