@@ -1,60 +1,210 @@
-
-*{box-sizing:border-box}
-:root{
-  --bg:#0f0f14;
-  --fg:#e6e6e9;
-  --muted:#aaa;
-  --primary:#47d16b;
-  --card:#171720;
-  --border:#2b2b37;
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
+* {
+  box-sizing: border-box;
 }
-html,body{height:100%}
-body{
-  margin:0;
-  font:16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
-  color:var(--fg); background:linear-gradient(180deg,#0f0f14,#141420);
-  display:flex; flex-direction:column;
+:root {
+  --bg: #0f0f14;
+  --fg: #e6e6e9;
+  --muted: #aaa;
+  --primary: #47d16b;
+  --card: #171720;
+  --border: #2b2b37;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
-.topbar{display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--border); position:sticky; top:0; background:rgba(15,15,20,.85); backdrop-filter:saturate(1.2) blur(6px)}
-h1{margin:0; font-size:20px; letter-spacing:.5px}
-main{width:min(900px, 96vw); margin:24px auto; display:flex; flex-direction:column; gap:18px}
-.clock-card{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow:var(--shadow)}
-.clock-time{font-weight:700; font-size:42px; letter-spacing:1px}
-.clock-date{color:var(--muted); margin-top:2px}
-.tz{color:var(--muted); font-size:12px; margin-top:6px}
-
-.tabs{display:flex; gap:6px; margin-top:8px}
-.tab{flex:1; padding:10px; background:var(--card); border:1px solid var(--border); color:var(--fg); border-radius:12px}
-.tab.active{outline:2px solid var(--primary)}
-
-.tabpane{display:none; background:var(--card); border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow:var(--shadow)}
-.tabpane.show{display:block}
-
-.row{display:flex; align-items:center}
-.gap{gap:10px}
-.stack{display:flex; flex-direction:column; gap:6px}
-.grow{flex:1}
-.incdec{display:flex; gap:6px; flex-wrap:wrap}
-
-input, button{
-  border-radius:12px; border:1px solid var(--border); background:#10101a; color:var(--fg); padding:10px 12px;
+html,
+body {
+  height: 100%;
+  color-scheme: dark light;
 }
-input{min-width:180px}
-button{cursor:pointer}
-button.primary{background:var(--primary); color:#101510; border:0}
-button.ghost{background:transparent}
-button:disabled{opacity:.6; cursor:not-allowed}
+body {
+  margin: 0;
+  font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, Arial, sans-serif;
+  color: var(--fg);
+  background: linear-gradient(180deg, #0f0f14, #141420);
+  display: flex;
+  flex-direction: column;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(15, 15, 20, 0.85);
+  backdrop-filter: saturate(1.2) blur(6px);
+}
+h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+main {
+  width: min(900px, 96vw);
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.clock-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.clock-time {
+  font-weight: 700;
+  font-size: 42px;
+  letter-spacing: 1px;
+}
+.clock-date {
+  color: var(--muted);
+  margin-top: 2px;
+}
+.tz {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 6px;
+}
 
-.big-display{font-variant-numeric:tabular-nums; font-weight:700; font-size:56px; margin:10px 0 0}
-.alert{margin-top:12px; padding:10px 12px; border:1px solid var(--primary); background:#092511; color:#b8ffcc; border-radius:12px}
-.list{list-style:none; padding:0; margin:10px 0 4px}
-.list li{display:flex; align-items:center; justify-content:space-between; border:1px solid var(--border); background:#12121b; padding:10px 12px; border-radius:12px; margin:8px 0}
-.tag{font-size:12px; color:#9bd4ac; border:1px dashed #2d6842; padding:2px 6px; border-radius:999px}
-.badge{font-size:12px; color:#d4d4d6; border:1px solid var(--border); padding:2px 6px; border-radius:999px}
-.actions{display:flex; gap:6px}
-.foot{display:grid; place-items:center; padding:18px; color:var(--muted)}
-@media (max-width:560px){
-  .row{flex-direction:column; align-items:stretch}
-  input{min-width:unset}
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.tab {
+  flex: 1;
+  padding: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: 12px;
+}
+.tab.active {
+  outline: 2px solid var(--primary);
+}
+
+.tabpane {
+  display: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.tabpane.show {
+  display: block;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+.gap {
+  gap: 10px;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.grow {
+  flex: 1;
+}
+.incdec {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+input,
+button {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #10101a;
+  color: var(--fg);
+  padding: 10px 12px;
+}
+input {
+  min-width: 180px;
+}
+button {
+  cursor: pointer;
+}
+button.primary {
+  background: var(--primary);
+  color: #101510;
+  border: 0;
+}
+button.ghost {
+  background: transparent;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.big-display {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 56px;
+  margin: 10px 0 0;
+}
+.alert {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--primary);
+  background: #092511;
+  color: #b8ffcc;
+  border-radius: 12px;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 4px;
+}
+.list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  background: #12121b;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin: 8px 0;
+}
+.tag {
+  font-size: 12px;
+  color: #9bd4ac;
+  border: 1px dashed #2d6842;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+.badge {
+  font-size: 12px;
+  color: #d4d4d6;
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+.actions {
+  display: flex;
+  gap: 6px;
+}
+.foot {
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  color: var(--muted);
+}
+@media (max-width: 560px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  input {
+    min-width: unset;
+  }
 }
